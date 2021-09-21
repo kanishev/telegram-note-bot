@@ -19,6 +19,7 @@
     "note",
     "nodejs"
   ],
+  "type": "module",
   "author": "kanishev",
   "license": "ISC",
   "bugs": {
