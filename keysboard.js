@@ -18,8 +18,8 @@ export function selectCurrency(){
   return Markup.inlineKeyboard([
     Markup.button.callback('USD', 'currency-usd'),
     Markup.button.callback('EUR', 'currency-eur'),
-    Markup.button.callback('RUB', 'currency-rub'),
-    Markup.button.callback('BTC', 'currency-btc'),
+    Markup.button.callback('UAH', 'currency-uah'),
+    Markup.button.callback('KZT', 'currency-kzt'),
 ]);
 }
 

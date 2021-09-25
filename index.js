@@ -11,6 +11,8 @@ const bot = new Telegraf(process.env.TOKEN)
 const PORT = process.env.PORT;
 
 let message = "";
+let currencies;
+
 
 bot.start(ctx => {
   ctx.reply('Darima pussy', getMenu())
@@ -90,15 +92,15 @@ bot.action(/^currency/, async ctx => {
 
  const currency = ctx.match.input.split('-')[1].toUpperCase();
 
- const {data} = await axios(`http://api.currencylayer.com/live?access_key=${process.env.CURRENCY_TOKEN}&currencies=USD,EUR,RUB,BTC`)
-
- console.log(data.quotes)
-
- for (let key in data.quotes) {
-   if(key.includes(currency)){
-    return ctx.reply(data.quotes[key]);
-   }
+ if (!currencies){
+   const {data} = await axios(`https://www.cbr-xml-daily.ru/daily_json.js`)
+   currencies = data.Valute;
  }
+
+  if (!currencies[currency]){
+    return ctx.reply(`Не получается найти валюту ${currency}`);
+  }
+  return ctx.reply(currencies[currency].Value);
 
 })
 
