@@ -5,7 +5,7 @@ dotenv.config()
 import express from 'express';
 import {Telegraf}  from 'telegraf';
 import { addTodo, deleteTask, getTodo } from './db.js';
-import { confirmTask, getMenu, selectCurrency, selectTodo } from './keysboard.js';
+import { confirmTask, getMenu, selectCity, selectCurrency, selectTodo } from './keysboard.js';
 const app = express();
 const bot = new Telegraf(process.env.TOKEN)
 const PORT = process.env.PORT;
@@ -82,7 +82,7 @@ bot.action(['yes', 'no'], ctx => {
 bot.hears('Курсы валют', ctx => {
 
   ctx.replyWithHTML(
-    `<b>Выберите валютуe:</b>`,
+    `<b>Выберите валюту:</b>`,
     selectCurrency()
   )
 
@@ -93,7 +93,7 @@ bot.action(/^currency/, async ctx => {
  const currency = ctx.match.input.split('-')[1].toUpperCase();
 
  if (!currencies){
-   const {data} = await axios(`https://www.cbr-xml-daily.ru/daily_json.js`)
+   const {data} = await axios(process.env.CURRENCY_URL)
    currencies = data.Valute;
  }
 
@@ -105,14 +105,43 @@ bot.action(/^currency/, async ctx => {
 })
 
 
+// Погода
 
+bot.hears('Погода', ctx => {
+  ctx.replyWithHTML(
+    `<b>Выберите город из списка или введите вручную:</b>`,
+    selectCity()
+  )
+})
+
+
+bot.action(/^weather/, async ctx => {
+
+  const city = ctx.match.input.split('-')[1];
+
+  const {data} = await axios(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_KEY}`);
+  return ctx.replyWithHTML(`
+  <b>Актуальная погода по городу ${data.name}</b>\n
+  <b>Температура: </b><i>${Math.round(data.main.temp - 273)} ℃</i>
+  <b>Ощущается как: </b><i>${Math.round(data.main.feels_like - 273)} ℃</i>
+  <b>Давление: </b><i>${data.main.pressure * 0.75}</i>
+  <b>Влажность: </b><i>${data.main.humidity} г.м</i>
+  <b>Видимость: </b><i>${data.visibility} м</i>
+  <b>Ветер: </b><i>${data.wind.speed} м.с</i>
+  <b>Рассвет: </b><i>${new Date(data.sys.sunrise).getHours()}ч. ${new Date(data.sys.sunrise).getMinutes()}м.</i>
+  <b>Закат: </b><i>${new Date(data.sys.sunset).getHours()}ч. ${new Date(data.sys.sunset).getMinutes()}м.</i>`
+  )
+ })
+
+
+ //WIKI
 
 
 // Прочее
 
 bot.on('text', ctx => {
 
-  message = ctx.message.text;
+  message = ctx.message.text
 
   ctx.replyWithHTML(
       `Вы действительно хотите добавить задачу:\n\n`+
