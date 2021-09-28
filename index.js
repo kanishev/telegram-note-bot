@@ -72,9 +72,16 @@ bot.action(["yes", "no"], (ctx) => {
   if (ctx.callbackQuery.data == "yes") {
     let status = addTodo(message);
     ctx.editMessageText(status);
-    confirmTask();
+    ctx.replyWithHTML(
+      `<b>Чтобы добавить задачу введите текст ниже \n или выберите действие:</b>`,
+      selectTodo()
+    );
   } else {
     ctx.deleteMessage();
+    ctx.replyWithHTML(
+      `<b>Чтобы добавить задачу введите текст ниже \n или выберите действие:</b>`,
+      selectTodo()
+    );
   }
 });
 
@@ -101,7 +108,6 @@ bot.action(/^currency/, async (ctx) => {
 });
 
 // Погода
-
 bot.hears("Погода", (ctx) => {
   status = "weather";
 
@@ -142,7 +148,7 @@ async function fetchWeather(city) {
 
 bot.hears("Поиск wiki", (ctx) => {
   status = "wiki";
-  return ctx.reply("ВВедите запрос");
+  return ctx.reply("Введите запрос");
 });
 
 async function fetchWiki() {
@@ -173,7 +179,8 @@ bot.on("text", async (ctx) => {
   if (status == "todo") {
     ctx.replyWithHTML(
       `Вы действительно хотите добавить задачу:\n\n` +
-        `<i>${ctx.message.text}</i>`
+        `<i>${ctx.message.text}</i>`,
+      confirmTask()
     );
   } else if (status == "wiki") {
     fetchWiki();
