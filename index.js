@@ -7,7 +7,6 @@ import { weather } from "./components/weather.js";
 import listeners from "./utlis/listetners.js";
 
 const app = express();
-const PORT = process.env.PORT;
 
 const state = {
   status: "",
@@ -23,6 +22,6 @@ listeners();
 
 bot.launch();
 
-app.listen(PORT, () => {
-  console.log(`My server is running on port ${PORT}`);
+app.listen(3000, () => {
+  console.log(`My server is running on port 3000`);
 });

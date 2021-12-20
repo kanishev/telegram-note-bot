@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import bot from "../utlis/setup.js";
 import state from "../index.js";
+import axios from "axios";
 dotenv.config();
 
 export function wiki() {
@@ -11,8 +12,6 @@ export function wiki() {
 }
 
 export async function fetchWiki(message) {
-  const wiki_url = process.env.WIKI_URL;
-
   const params = {
     origin: "*",
     format: "json",
@@ -27,6 +26,8 @@ export async function fetchWiki(message) {
     pithumbsize: 300,
   };
 
-  const { data } = await axios.get(wiki_url, { params });
+  const { data } = await axios.get("https://ru.wikipedia.org/w/api.php", {
+    params,
+  });
   return data;
 }

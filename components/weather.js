@@ -7,7 +7,7 @@ dotenv.config();
 
 export async function fetchWeather(city) {
   const { data } = await axios(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_KEY}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=410a19818d6e23811129ab0eded2fe74`
   );
   return data;
 }

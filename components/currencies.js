@@ -18,7 +18,9 @@ export default function currencies() {
     const currency = ctx.match.input.split("-")[1].toUpperCase();
 
     if (!currencyList) {
-      const { data } = await axios(process.env.CURRENCY_URL);
+      const { data } = await axios(
+        "https://www.cbr-xml-daily.ru/daily_json.js"
+      );
       currencyList = data.Valute;
     }
 
