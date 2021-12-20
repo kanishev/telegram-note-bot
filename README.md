@@ -2,7 +2,7 @@
 
 ## Project Information
 
-This app provide you an ability to make actions such as:\
+This app provide you an ability to make actions such as:
 
 - Create tasks / save tasks in local database / delete tasks
 - Search any informmation in Wikipedia
@@ -11,7 +11,7 @@ This app provide you an ability to make actions such as:\
 
 ### API
 
-🌍 The application retrieves data from:\
+🌍 The application retrieves data from:
 
 - [WikipediaAPI](https://ru.wikipedia.org/w/api.php)
 - [Openweathermap](https://openweathermap.org)
@@ -19,10 +19,11 @@ This app provide you an ability to make actions such as:\
 
 ### Technologies Used
 
-| Technology | Description                                              | Link 🌐                               |
-| ---------- | -------------------------------------------------------- | ------------------------------------- |
-| JavaScript | High Level, Dynamic, Interpreted Language                | ----                                  |
-| Axios      | A promise-based HTTP Client for node. js and the browser | https://axios-http.com/docs/api_intro |
+| Technology | Description                                                             | Link 🌐                               |
+| ---------- | ----------------------------------------------------------------------- | ------------------------------------- |
+| JavaScript | High Level, Dynamic, Interpreted Language                               | ----                                  |
+| NodeJS     | Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. | https://nodejs.org/en                 |
+| Axios      | A promise-based HTTP Client for node. js and the browser                | https://axios-http.com/docs/api_intro |
 
 ## Project setup
 
