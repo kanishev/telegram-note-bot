@@ -8,6 +8,10 @@ import listeners from "./utlis/listetners.js";
 
 const app = express();
 
+app.get("/", (req, res) => {
+  res.send("Hello Bot");
+});
+
 const state = {
   status: "",
 };
