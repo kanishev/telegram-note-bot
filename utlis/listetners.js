@@ -66,7 +66,7 @@ export default function listeners() {
         ).getMinutes()}м.</i>`);
       } catch (e) {
         console.log(e);
-        await ctx.reply("Похоже, что-то пошло не так");
+        await ctx.reply("Похоже, данных на ваш запрос не нашлось");
       }
     }
   });
