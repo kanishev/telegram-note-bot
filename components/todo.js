@@ -17,9 +17,10 @@ export default function todo() {
 
   bot.action("getTask", async (ctx) => {
     const todo = await getTodo();
+
     let result = "";
 
-    todo.forEach((t, i) => (result += result + `[${i + 1}] ${t}\n`));
+    todo.forEach((t, i) => (result += `[${i + 1}] ${t}\n`));
 
     ctx.replyWithHTML(
       "<b>Список ваших задач:</b>\n\n" +
@@ -31,7 +32,7 @@ export default function todo() {
     const todo = await getTodo();
     let result = "";
 
-    todo.forEach((t, i) => (result += result + `[${i + 1}] ${t}\n`));
+    todo.forEach((t, i) => (result += `[${i + 1}] ${t}\n`));
 
     ctx.replyWithHTML(
       'Введите фразу <i>"удалить `порядковый номер задачи`"</i>, чтобы удалить сообщение,' +
