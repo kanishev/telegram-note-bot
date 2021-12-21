@@ -17,6 +17,10 @@ This app provide you an ability to make actions such as:
 - [Openweathermap](https://openweathermap.org)
 - [currency rate](https://www.cbr-xml-daily.ru/daily_json.js)
 
+### Demo
+
+https://t.me/my_custom_todo_bot
+
 ### Technologies Used
 
 | Technology | Description                                                             | Link 🌐                               |
